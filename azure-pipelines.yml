@@ -10,11 +10,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: '0.12.3'
 - task: TerraformTaskV1@0
   inputs:
     provider: 'azurerm'
     command: 'init'
-    backendServiceArm: 'Visual Studio Professional Subscription(07da7b3e-7762-4c87-91f3-1ac1edc099e8)'
+    backendServiceArm: 'Visual Studio Professional Subscription(1)(07da7b3e-7762-4c87-91f3-1ac1edc099e8)'
     backendAzureRmResourceGroupName: 'AzurePipelines'
     backendAzureRmStorageAccountName: 'azurepipelinestorage'
     backendAzureRmContainerName: 'azurepipelinecontainer'
