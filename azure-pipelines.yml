@@ -17,7 +17,7 @@ resources:
     name: metalstormbass/VulnerableWebApp
 
 stages:
-  - stage: Security_Test_Terraform
+  - stage: 
     jobs:
     
     - job: Terraform_Security_Scan  
