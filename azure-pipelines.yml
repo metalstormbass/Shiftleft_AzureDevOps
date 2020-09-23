@@ -35,11 +35,11 @@ stages:
         - checkout: VulnerableWebApp
         - bash: |
               ls
-              #chmod +x ./shiftleft
-              #./shiftleft iac-assessment -r 201981 --path ./
+              
+              ./shiftleft sourceguard -s VulnerableWebApp/
           env:
-           CHKP_CLOUDGUARD_ID: $(CHKP_CLOUDGUARD_ID)
-           CHKP_CLOUDGUARD_SECRET: $(CHKP_CLOUDGUARD_SECRET)
+           SG_CLIENT_ID: $(SG_CLIENT_ID)
+           SG_SECRET_KEY: $(SG_SECRET_KEY)
           continueOnError: True
 
 
