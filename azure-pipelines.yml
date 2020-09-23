@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-  - stage: Security Test
+  - stage: Security_Test
     jobs:
     - job: Terraform_Security_Scan  
       steps:
