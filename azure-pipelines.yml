@@ -8,9 +8,16 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-        
+
+resources:
+  repositories:
+  - repository: VulnerableWebApp
+    type: github
+    #endpoint: MyGitHubServiceConnection
+    name: metalstormbass/VulnerableWebApp
+
 stages:
-  - stage: Security_Test
+  - stage: Security_Test_Terraform_IAC
     jobs:
     
     - job: Terraform_Security_Scan  
@@ -22,6 +29,19 @@ stages:
            CHKP_CLOUDGUARD_ID: $(CHKP_CLOUDGUARD_ID)
            CHKP_CLOUDGUARD_SECRET: $(CHKP_CLOUDGUARD_SECRET)
           continueOnError: True
+    
+    - job: Web_Application_Code_Scan  
+      steps:
+        - checkout: VulnerableWebApp
+        - bash: |
+              ls
+              #chmod +x ./shiftleft
+              #./shiftleft iac-assessment -r 201981 --path ./
+          env:
+           CHKP_CLOUDGUARD_ID: $(CHKP_CLOUDGUARD_ID)
+           CHKP_CLOUDGUARD_SECRET: $(CHKP_CLOUDGUARD_SECRET)
+          continueOnError: True
+
 
     - job:  Deploy_to_Azure
       steps:
