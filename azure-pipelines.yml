@@ -8,7 +8,9 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-
+variables:
+          CHKP_CLOUDGUARD_ID: $CHKP_CLOUDGUARD_ID
+          CHKP_CLOUDGUARD_SECRET: $CHKP_CLOUDGUARD_SECRET
 stages:
   - stage: Security_Test
     jobs:
@@ -18,7 +20,5 @@ stages:
         - script: |
                chmod +x ./shiftleft
                ./shiftleft iac-assessment -r 201981 --path ./
-          env:
-               CHKP_CLOUDGUARD_ID: $CHKP_CLOUDGUARD_ID
-               CHKP_CLOUDGUARD_SECRET: $CHKP_CLOUDGUARD_SECRET
+
 
