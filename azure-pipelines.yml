@@ -41,9 +41,9 @@ stages:
                 credentials_helper "credstore" {
                  args = ["./credentials.tfrc.json"]
                 }         
-                echo $TF_CLI_CONFIG_FILE
-                #terraform init
-                #terraform plan
+                
+                terraform init
+                terraform plan
                 #terraform apply -auto-approve
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
