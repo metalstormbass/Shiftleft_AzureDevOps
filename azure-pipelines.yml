@@ -13,7 +13,7 @@ resources:
   repositories:
   - repository: VulnerableWebApp
     type: github
-    #endpoint: MyGitHubServiceConnection
+    endpoint: https://github.com/metlastormbass/VulnerableWebApp
     name: metalstormbass/VulnerableWebApp
 
 stages:
