@@ -30,7 +30,7 @@ stages:
           terraformVersion: '0.13.3'
       
        - bash: |
-                sed -i "/token/c\   \'token\' : \$TERRAFORM_API_KEY\," main.tf                            
+                sed -i "/token/c\   \token\ : \$TERRAFORM_API_KEY\," main.tf                            
                 cat main.tf
                 terraform init
                 terraform plan
