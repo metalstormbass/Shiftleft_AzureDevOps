@@ -15,7 +15,7 @@ stages:
     - job: Terraform_Security_Scan  
       steps:
       - script: |
-               chmod +x main/shiftleft
-               main/shiftleft iac-assessment -r 201981 --path .
+               chmod +x shiftleft
+               shiftleft iac-assessment -r 201981 --path .
          
 
