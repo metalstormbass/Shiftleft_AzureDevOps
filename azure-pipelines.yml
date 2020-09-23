@@ -38,8 +38,9 @@ stages:
     
     
     - job:  Deploy_to_Azure    
+      dependsOn: Terraform_Security_Scan
       steps:
-      dependsOn: Terraform_Security_sScan
+      
        - task: TerraformInstaller@0
          inputs:
           terraformVersion: '0.13.3'
