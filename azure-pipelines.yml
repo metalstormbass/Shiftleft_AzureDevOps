@@ -36,6 +36,11 @@ stages:
                   "token": $TERRAFORM_API_KEY
                 }
                 EOT
+                touch credentials.tfrc.json
+                cat <<EOT >> credentials.tf
+                credentials_helper "credstore" {
+                 args = ["./credentials.tfrc.json"]
+                }         
                 echo $TF_CLI_CONFIG_FILE
                 #terraform init
                 #terraform plan
