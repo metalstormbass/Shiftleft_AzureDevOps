@@ -37,9 +37,9 @@ stages:
           continueOnError: True
     
     
-    - job:  Deploy_to_Azure
-      dependsOn: Security_Test_Terraform
+    - job:  Deploy_to_Azure    
       steps:
+      dependsOn: Terraform_Security_sScan
        - task: TerraformInstaller@0
          inputs:
           terraformVersion: '0.13.3'
