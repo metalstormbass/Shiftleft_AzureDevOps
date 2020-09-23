@@ -36,8 +36,8 @@ stages:
                  token = $TERRAFORM_API_KEY
                 }
                 EOT
-                terraform init
+                #terraform init
                 terraform plan
-                terraform apply -auto-approve
+                #terraform apply -auto-approve
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
