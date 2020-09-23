@@ -36,5 +36,4 @@ stages:
                  token = $TERRAFORM_API_KEY
                 }
                 EOT
-            
                 terraform init
