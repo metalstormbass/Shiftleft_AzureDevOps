@@ -38,3 +38,5 @@ stages:
                 EOT
                 cat ./credentials.tf
                 terraform init
+         env: 
+          TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
