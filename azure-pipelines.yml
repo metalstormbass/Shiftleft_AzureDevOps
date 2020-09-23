@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -53,8 +54,18 @@ stages:
                 #terraform apply -auto-approve
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
-
-    - job: Package_Application_Code
+    
+    - job: Package_App_Code
       steps:
-        - bash: zip -r VulnerableWebApp.zip  /VulnerableWebApp
-
+        - task: ArchiveFiles@2
+          inputs:
+            rootFolderOrFile: '/VulnerableWebApp'
+            includeRootFolder: true
+            archiveType: 'zip'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/VulnerableWebApp.zip'
+            replaceExistingArchive: true
+        - task: PublishPipelineArtifact@1
+          inputs:
+            targetPath: '$(Pipeline.Workspace)'
+            artifact: './VulnerableWebApp.zip'
+            publishLocation: 'pipeline'
