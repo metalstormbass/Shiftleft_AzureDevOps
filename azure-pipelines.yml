@@ -27,7 +27,7 @@ stages:
       steps:
        - task: TerraformInstaller@0
          inputs:
-          terraformVersion: '0.12.3'
+          terraformVersion: '0.13.3'
       
        - bash: |
                 touch credentials.tf
