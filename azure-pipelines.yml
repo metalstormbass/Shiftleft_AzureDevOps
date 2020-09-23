@@ -54,5 +54,5 @@ stages:
 
     - job: Package_Application_Code
       steps:
-        - bash: zip -r  /VulnerableWebApp
+        - bash: zip -r VulnerableWebApp.zip  /VulnerableWebApp
 
