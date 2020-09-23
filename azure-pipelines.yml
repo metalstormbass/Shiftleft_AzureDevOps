@@ -32,6 +32,9 @@ stages:
        - bash: |
                 cat ${HOME}/.terraformrc | grep 'credentials "app.terraform.io"'
                 cat ${HOME}/.terraformrc | grep 'token = "$TERRAFORM_API_KEY"'
+                ls -a /opt/hostedtoolcache/terraform/0.13.3/x64/terraform version
+                ls -a /home/
+                
                 terraform init
                 terraform plan
                 #terraform apply -auto-approve
