@@ -41,7 +41,7 @@ stages:
                 credentials_helper "credstore" {
                  args = ["./credentials.tfrc.json"]
                 }         
-                
+                EOT
                 terraform init
                 terraform plan
                 #terraform apply -auto-approve
