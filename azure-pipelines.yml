@@ -23,11 +23,18 @@ stages:
            CHKP_CLOUDGUARD_SECRET: $(CHKP_CLOUDGUARD_SECRET)
           continueOnError: True
 
-    - job:  Deploy
+    - job:  Deploy_to_Azure
       steps:
        - task: TerraformInstaller@0
          inputs:
           terraformVersion: '0.12.3'
       
        - bash: |
-          terraform init
+                touch credentials.tf
+                cat <<EOT >> ./credentials.tf
+                credentials "app.terraform.io" {
+                 token = $TERRAFORM_API_KEY
+                }
+                EOT
+            
+                terraform init
