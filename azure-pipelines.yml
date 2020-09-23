@@ -17,7 +17,7 @@ resources:
     name: metalstormbass/VulnerableWebApp
 
 stages:
-  - stage: Security_Test_Terraform_IAC
+  - stage: Security_Test_Terraform
     jobs:
     
     - job: Terraform_Security_Scan  
@@ -38,6 +38,7 @@ stages:
     
     
     - job:  Deploy_to_Azure
+      dependsOn: Security_Test_Terraform
       steps:
        - task: TerraformInstaller@0
          inputs:
