@@ -30,9 +30,14 @@ stages:
           terraformVersion: '0.13.3'
       
        - bash: |
-                ls  /home/vsts/.terraform.d/
-                #terraform init
-                #terraform plan
-                #terraform apply -auto-approve
+                touch credentials.tfrc.json
+                cat <<EOT >> credentials.tfrc.json
+                {
+                  "token": $TERRAFORM_API_KEY
+                }
+                EOT
+                terraform init
+                terraform plan
+                terraform apply -auto-approve
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
