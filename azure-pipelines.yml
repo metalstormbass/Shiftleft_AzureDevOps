@@ -33,9 +33,10 @@ stages:
                 #cat ${HOME}/.terraformrc | grep 'credentials "app.terraform.io"'
                 #cat ${HOME}/.terraformrc | grep 'token = "$TERRAFORM_API_KEY"'
                 ls -a /opt/hostedtoolcache/terraform/0.13.3/x64/terraform version
-                ls -a /home/
-                ls -a /home/VssAdministrator
-                ls -a /home/vsts
+                
+                
+                ls -a /home/vsts/terraform.d
+
                 find . -name .terraformrc
                 find ../ -name .terraformrc
                 find ../../ -name .terraformrc
