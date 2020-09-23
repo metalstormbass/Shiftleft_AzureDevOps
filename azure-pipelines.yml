@@ -51,3 +51,8 @@ stages:
                 #terraform apply -auto-approve
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
+
+    - job: Package_Application_Code zip 
+      steps:
+        - bash: zip -r  /VulnerableWebApp
+        
