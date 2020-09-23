@@ -58,6 +58,7 @@ stages:
     - job: Package_App_Code
       dependsOn: Terraform_Security_Scan
       steps:
+        - bash: ls
         - task: ArchiveFiles@2
           inputs:
             rootFolderOrFile: 'VulnerableWebApp'
