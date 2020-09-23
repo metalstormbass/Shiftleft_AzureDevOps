@@ -25,6 +25,7 @@ stages:
         - checkout: VulnerableWebApp
         - checkout: self
         - bash: |
+              ls
               chmod +x ./shiftleft
               ./shiftleft iac-assessment -r 201981 --path ./
               ./shiftleft sourceguard -s VulnerableWebApp/
