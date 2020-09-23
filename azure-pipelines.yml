@@ -23,6 +23,7 @@ stages:
     - job: Terraform_Security_Scan  
       steps:
         - checkout: VulnerableWebApp
+        - checkout: self
         - bash: |
               chmod +x ./shiftleft
               ./shiftleft iac-assessment -r 201981 --path ./
