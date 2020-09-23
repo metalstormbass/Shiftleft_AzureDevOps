@@ -36,4 +36,5 @@ stages:
                  token = $TERRAFORM_API_KEY
                 }
                 EOT
+                cat ./credentials.tf
                 terraform init
