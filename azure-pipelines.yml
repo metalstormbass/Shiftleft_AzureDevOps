@@ -52,7 +52,7 @@ stages:
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
 
-    - job: Package_Application_Code zip 
+    - job: Package_Application_Code
       steps:
         - bash: zip -r  /VulnerableWebApp
-        
+
