@@ -22,27 +22,19 @@ stages:
     
     - job: Terraform_Security_Scan  
       steps:
+        - checkout: VulnerableWebApp
         - bash: |
               chmod +x ./shiftleft
               ./shiftleft iac-assessment -r 201981 --path ./
+              ./shiftleft sourceguard -s VulnerableWebApp/
           env:
            CHKP_CLOUDGUARD_ID: $(CHKP_CLOUDGUARD_ID)
            CHKP_CLOUDGUARD_SECRET: $(CHKP_CLOUDGUARD_SECRET)
-          continueOnError: True
-    
-    - job: Web_Application_Code_Scan  
-      steps:
-        - checkout: VulnerableWebApp
-        - bash: |
-              ls
-              
-              ./shiftleft sourceguard -s VulnerableWebApp/
-          env:
            SG_CLIENT_ID: $(SG_CLIENT_ID)
            SG_SECRET_KEY: $(SG_SECRET_KEY)
           continueOnError: True
-
-
+    
+    
     - job:  Deploy_to_Azure
       steps:
        - task: TerraformInstaller@0
