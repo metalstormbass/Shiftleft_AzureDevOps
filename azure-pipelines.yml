@@ -30,13 +30,17 @@ stages:
           terraformVersion: '0.13.3'
       
        - bash: |
-                cat ${HOME}/.terraformrc | grep 'credentials "app.terraform.io"'
-                cat ${HOME}/.terraformrc | grep 'token = "$TERRAFORM_API_KEY"'
+                #cat ${HOME}/.terraformrc | grep 'credentials "app.terraform.io"'
+                #cat ${HOME}/.terraformrc | grep 'token = "$TERRAFORM_API_KEY"'
                 ls -a /opt/hostedtoolcache/terraform/0.13.3/x64/terraform version
                 ls -a /home/
-                
-                terraform init
-                terraform plan
+                ls -a /home/VssAdministrator
+                ls -a /home/vsts
+                find . -name .terraformrc
+                find ../ -name .terraformrc
+                find ../../ -name .terraformrc
+                #terraform init
+                #terraform plan
                 #terraform apply -auto-approve
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
