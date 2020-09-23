@@ -36,8 +36,9 @@ stages:
                   "token": $TERRAFORM_API_KEY
                 }
                 EOT
-                terraform init
-                terraform plan
-                terraform apply -auto-approve
+                echo $TF_CLI_CONFIG_FILE
+                #terraform init
+                #terraform plan
+                #terraform apply -auto-approve
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
