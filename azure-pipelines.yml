@@ -30,7 +30,7 @@ stages:
           terraformVersion: '0.13.3'
       
        - bash: |
-                ls -a /home/vsts
+                cat  /home/vsts/.terraform.d
                 #terraform init
                 #terraform plan
                 #terraform apply -auto-approve
