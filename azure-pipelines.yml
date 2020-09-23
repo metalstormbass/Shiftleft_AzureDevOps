@@ -9,7 +9,13 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: TerraformInstaller@0
-  inputs:
-    terraformVersion: '0.12.3'
+stages:
+  - stage: Security Test
+    jobs:
+    - job: Terraform_Security_Scan  
+      steps:
+      - script: |
+               chmod +x main/shiftleft
+               main/shiftleft iac-assessment -r 201981 --path .
+         
+
