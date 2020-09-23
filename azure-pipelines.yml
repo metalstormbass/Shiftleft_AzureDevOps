@@ -30,7 +30,7 @@ stages:
           terraformVersion: '0.13.3'
       
        - bash: |
-                ls
+                ls /opt/hostedtoolcache/terraform/0.13.3/x64/
                 #terraform init
                 #terraform plan
                 #terraform apply -auto-approve
