@@ -36,7 +36,19 @@ stages:
            SG_CLIENT_ID: $(SG_CLIENT_ID)
            SG_SECRET_KEY: $(SG_SECRET_KEY)
           continueOnError: True
-    
+        - task: ArchiveFiles@2
+          inputs:
+            rootFolderOrFile: 'VulnerableWebApp'
+            includeRootFolder: false
+            archiveType: 'zip'
+            archiveFile: 'VulnerableWebApp.zip'
+            replaceExistingArchive: true
+            verbose: true
+        - task: PublishPipelineArtifact@1
+          inputs:
+            targetPath: '$(Pipeline.Workspace)'
+            artifact: './VulnerableWebApp.zip'
+            publishLocation: 'pipeline'
     
     - job:  Deploy_to_Azure    
       dependsOn: Terraform_Security_Scan
@@ -54,21 +66,3 @@ stages:
                 #terraform apply -auto-approve
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
-    
-    - job: Package_App_Code
-      dependsOn: Terraform_Security_Scan
-      steps:
-        - bash: ls
-        - task: ArchiveFiles@2
-          inputs:
-            rootFolderOrFile: 'VulnerableWebApp'
-            includeRootFolder: false
-            archiveType: 'zip'
-            archiveFile: 'VulnerableWebApp.zip'
-            replaceExistingArchive: true
-            verbose: true
-        - task: PublishPipelineArtifact@1
-          inputs:
-            targetPath: '$(Pipeline.Workspace)'
-            artifact: './VulnerableWebApp.zip'
-            publishLocation: 'pipeline'
