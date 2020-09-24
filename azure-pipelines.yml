@@ -26,7 +26,7 @@ stages:
         - checkout: VulnerableWebApp
         - checkout: self
         - bash: |
-              ls
+              
               chmod +x VulnerableAzure-AzurePipeline/shiftleft
               VulnerableAzure-AzurePipeline/shiftleft iac-assessment -r 201981 --path VulnerableAzure-AzurePipeline/
               VulnerableAzure-AzurePipeline/shiftleft sourceguard -s VulnerableWebApp/
@@ -50,7 +50,7 @@ stages:
             artifact: 'VulnerableWebApp.zip'
             publishLocation: 'pipeline'
     
-    - job:  Deploy_to_Azure    
+    - job:  Terraform_Plan    
       dependsOn: Terraform_Security_Scan
       steps:
       
@@ -63,6 +63,19 @@ stages:
                 cat main.tf
                 terraform init
                 terraform plan
-                #terraform apply -auto-approve
+                
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
+      
+       - task: ArchiveFiles@2
+         inputs:
+            rootFolderOrFile: './'
+            includeRootFolder: true
+            archiveType: 'zip'
+            archiveFile: './VulnerableAzure.zip'
+            replaceExistingArchive: true
+       - task: PublishPipelineArtifact@1
+         inputs:
+            targetPath: '$(Pipeline.Workspace)'
+            artifact: 'VulnerableAzure.zip'
+            publishLocation: 'pipeline'
