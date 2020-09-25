@@ -38,9 +38,12 @@ stages:
             archiveFile: 'VulnerableWebApp.zip'
             replaceExistingArchive: true
             verbose: true
-        - publish: ./VulnerableWebApp.zip
-          artifact: VulnerableWebApp.zip
-          
+        - task: PublishPipelineArtifact@1
+          inputs:
+            targetPath: './VulnerableWebApp.zip'
+            artifact: 'VulnerableWebApp'
+            publishLocation: 'pipeline'
+
     - job:  Terraform_Plan    
       dependsOn: Terraform_Security_Scan
       steps:
@@ -70,5 +73,5 @@ stages:
        - task: PublishPipelineArtifact@1
          inputs:
             targetPath: './VulnerableAzure.zip'
-            artifact: './'
+            artifact: 'VulnerableAzure'
             publishLocation: 'pipeline'
