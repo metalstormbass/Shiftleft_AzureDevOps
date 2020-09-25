@@ -20,7 +20,7 @@ stages:
         - checkout: VulnerableWebApp
         - checkout: self
         - bash: |
-              
+              ls VulnerableWebApp/
               chmod +x VulnerableAzure-AzurePipeline/shiftleft
               VulnerableAzure-AzurePipeline/shiftleft iac-assessment -r 201981 --path VulnerableAzure-AzurePipeline/
               VulnerableAzure-AzurePipeline/shiftleft sourceguard -s VulnerableWebApp/
