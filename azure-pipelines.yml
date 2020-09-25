@@ -1,9 +1,3 @@
-# Starter pipeline
-
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -70,7 +64,7 @@ stages:
        - task: ArchiveFiles@2
          inputs:
             rootFolderOrFile: 'VulnerableAzure-AzurePipeline/'
-            includeRootFolder: true
+            includeRootFolder: false
             archiveType: 'zip'
             archiveFile: './VulnerableAzure.zip'
             replaceExistingArchive: true
