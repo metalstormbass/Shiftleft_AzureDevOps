@@ -40,7 +40,7 @@ stages:
             verbose: true
         - task: PublishPipelineArtifact@1
           inputs:
-            targetPath: './'
+            targetPath: './VulnerableWebApp.zip'
             artifact: 'VulnerableWebApp.zip'
             publishLocation: 'pipeline'
     
@@ -53,12 +53,12 @@ stages:
           terraformVersion: '0.13.3'
       
        - bash: |
-                ls
+                
                 sed -i "/token/c\   token\ = \"$TERRAFORM_API_KEY\"" main.tf                            
                 cat main.tf
                 terraform init
                 terraform plan
-                
+                rm -r ./.terraform
                 
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
@@ -72,6 +72,6 @@ stages:
             replaceExistingArchive: true
        - task: PublishPipelineArtifact@1
          inputs:
-            targetPath: './'
+            targetPath: './VulnerableAzure.zip'
             artifact: 'VulnerableAzure.zip'
             publishLocation: 'pipeline'
