@@ -57,6 +57,7 @@ stages:
                 cat main.tf
                 terraform init
                 terraform plan
+                ls
                 
          env: 
           TERRAFORM_API_KEY: $(TERRAFORM_API_KEY)
