@@ -38,7 +38,7 @@ stages:
           continueOnError: True
         - task: ArchiveFiles@2
           inputs:
-            rootFolderOrFile: 'VulnerableWebApp'
+            rootFolderOrFile: 'VulnerableWebApp/'
             includeRootFolder: false
             archiveType: 'zip'
             archiveFile: 'VulnerableWebApp.zip'
@@ -69,7 +69,7 @@ stages:
       
        - task: ArchiveFiles@2
          inputs:
-            rootFolderOrFile: './'
+            rootFolderOrFile: 'VulnerableAzure/'
             includeRootFolder: true
             archiveType: 'zip'
             archiveFile: './VulnerableAzure.zip'
