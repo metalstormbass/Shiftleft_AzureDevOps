@@ -46,7 +46,7 @@ stages:
             verbose: true
         - task: PublishPipelineArtifact@1
           inputs:
-            targetPath: '$(Pipeline.Workspace)'
+            targetPath: './'
             artifact: 'VulnerableWebApp.zip'
             publishLocation: 'pipeline'
     
@@ -69,13 +69,13 @@ stages:
       
        - task: ArchiveFiles@2
          inputs:
-            rootFolderOrFile: 'VulnerableAzure/'
+            rootFolderOrFile: 'VulnerableAzure-AzurePipeline/'
             includeRootFolder: true
             archiveType: 'zip'
             archiveFile: './VulnerableAzure.zip'
             replaceExistingArchive: true
        - task: PublishPipelineArtifact@1
          inputs:
-            targetPath: '$(Pipeline.Workspace)'
+            targetPath: './'
             artifact: 'VulnerableAzure.zip'
             publishLocation: 'pipeline'
