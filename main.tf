@@ -1,7 +1,7 @@
  terraform {
   backend "remote" {
     organization = "MikeNet"
-    token = $$TERRAFORM_API_KEY
+    token = ""
 
     workspaces {
       name = "VulnerableAzure-AzurePipeline"
