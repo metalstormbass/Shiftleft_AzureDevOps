@@ -20,11 +20,12 @@ This is the high level build pipeline workflow: <br>
     6. Builds VulnerableWebApp.zip build artifact for Deployment <br>
     7. Installs Terraform & Runs Terraform init, plan.  <br>
     8. Builds VulnerableAzure.zip build artifact for deployment.  <br>
- 
- Due to there being security issues, this is why we see the Azure pipeline status as being partially sucessful.
+ <br>
+ Due to there being security issues, this is why we see the Azure pipeline status as being partially sucessful. <br>
  
 [![Build Status](https://dev.azure.com/mibraun/VulnerableAzure%20Deployment/_apis/build/status/metalstormbass.VulnerableAzure-AzurePipeline?repoName=metalstormbass%2FVulnerableAzure-AzurePipeline&branchName=master)](https://dev.azure.com/mibraun/VulnerableAzure%20Deployment/_build/latest?definitionId=1&repoName=metalstormbass%2FVulnerableAzure-AzurePipeline&branchName=master)  
 
+<br>
  This is the high level workflow of the Deploy to Azure release pipeline: <br>
 
     1. Automatically initiate pipeline when a new build artifact is created <br>
