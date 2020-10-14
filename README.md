@@ -44,8 +44,8 @@ This is the high level build pipeline workflow: <br>
 [Github Account](https://github.com) <br>
 [Azure Account](https://portal.azure.com) <br>
 [Terraform Cloud Account](https://terraform.io) <br>
-[Check Point Cloud Portal](https://portal.checkpoint.com)
-[Check Point CSPM Account](https://secure.dome9.com/v2/login)
+[Check Point Cloud Portal](https://portal.checkpoint.com) - <b> Generate SourceGuard API Key </b> <br>
+[Check Point CSPM Account](https://secure.dome9.com/v2/login) - <b> Generate CSPM API Key <br>
 
 
 ## Setup
@@ -89,6 +89,7 @@ Create a new project in Azure Devops. <br>
 
 ![](images/azdevops1.PNG) <br>
 
+Navigate to the <b> Pipeline </b> section.
 
 Connect it to your github repository, review the pipeline YAML and <b> save </b> the pipeline. <br>
 
