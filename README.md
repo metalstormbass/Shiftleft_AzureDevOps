@@ -51,6 +51,9 @@ This is the high level build pipeline workflow: <br>
 ## Setup
 
 Fork the [VulnerableAzure-AzurePipeline](https://github.com/metalstormbass/VulnerableAzure-AzurePipline) repository into your personal Github account. 
+<br><br>
+
+Fork the [VulnerableWebApp](https://github.com/metalstormbass/VulnerableWebApp)
 <br>
 
 ### Microsoft Azure
