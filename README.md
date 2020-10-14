@@ -50,11 +50,11 @@ This is the high level build pipeline workflow: <br>
 
 ## Setup
 
-Fork the [VulnerableAzure-AzurePipeline](https://github.com/metalstormbass/VulnerableAzure-AzurePipline) repository into your personal Github account. 
+Fork the [VulnerableAzure-AzurePipeline](https://github.com/metalstormbass/VulnerableAzure-AzurePipline) repository.
 <br><br>
 
-Fork the [VulnerableWebApp](https://github.com/metalstormbass/VulnerableWebApp)
-<br>
+Fork the [VulnerableWebApp](https://github.com/metalstormbass/VulnerableWebApp) repository.
+<br> 
 
 ### Microsoft Azure
  Create an App Registration in Azure. As this will be used multiple times, please note the following:
