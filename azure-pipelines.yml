@@ -28,7 +28,7 @@ stages:
               VulnerableAzure-AzurePipeline/shiftleft iac-assessment -r 201981 --path VulnerableAzure-AzurePipeline/
               
               #Run ShiftLeft against the VulnerableWebApp project
-              VulnerableAzure-AzurePipeline/shiftleft codescan -s VulnerableWebApp/
+              VulnerableAzure-AzurePipeline/shiftleft code-scan -s VulnerableWebApp/
               
               #Download the docker image used in the project and scan with Shift Left
               docker pull bkimminich/juice-shop
@@ -65,7 +65,8 @@ stages:
        - bash: |
                 
                 sed -i "/token/c\   token\ = \"$TERRAFORM_API_KEY\"" main.tf                            
-                cat main.tf
+                sed -i "/organization/c\   organization\ = \"$TF_ORGANIZATION\"" main.tf 
+                sed -i "/name/c\   name\ = \"$TF_WORKSPACE\"" main.tf 
                 terraform init
                 terraform plan
                 rm -r ./.terraform

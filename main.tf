@@ -1,10 +1,10 @@
  terraform {
   backend "remote" {
-    organization = "MikeNet"
+    organization = ""
     token = ""
 
     workspaces {
-      name = "VulnerableAzure-AzurePipeline"
+      name = ""
     }
   }
 }
