@@ -45,7 +45,7 @@ This is the high level build pipeline workflow: <br>
 [Azure Account](https://portal.azure.com) <br>
 [Terraform Cloud Account](https://terraform.io) <br>
 [Check Point Cloud Portal](https://portal.checkpoint.com) - <b> Generate SourceGuard API Key </b> <br>
-[Check Point CSPM Account](https://secure.dome9.com/v2/login) - <b> Generate CSPM API Key <br>
+[Check Point CSPM Account](https://secure.dome9.com/v2/login) - <b> Generate CSPM API Key </b> <br>
 
 
 ## Setup
