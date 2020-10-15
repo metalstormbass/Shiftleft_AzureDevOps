@@ -9,6 +9,7 @@ Written by Michael Braun
 
 This document outlines how to integrate Check Point ShiftLeft into an Azure DevOps CI/CD pipeline. <b>This is for demonstration purposes only.</b> In this Github repositiory, I have created a vulnerable by design Azure deployment. I will show how you can use Check Point ShiftLeft to identify security issues prior to them reaching the cloud. [Here](https://github.com/metalstormbass/VulnerableAzure) is the full documentation of the VulnerableAzure project is used in this demo. This particular demo also uses my [Vulnerable Web App](https://github.com/metalstormbass/VulnerableWebApp)  and  [OWASP Juice Shop](https://github.com/bkimminich/juice-shop) as components. <br> <br>
 
+### Workflow
 
 This is the high level build pipeline workflow: <br>
 
