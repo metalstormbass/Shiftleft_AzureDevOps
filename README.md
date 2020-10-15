@@ -103,7 +103,7 @@ Connect it to your github repository, review the pipeline YAML and <b> save </b>
 
 ### Plugins
 
-This pipeline makes use of the Terraform plugin for Azure DevOps. Please make sure you install it and apply it to the organization in which you're building this pipeline. The plugin can be found <b>[HERE]</b>(https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks)
+This pipeline makes use of the Terraform plugin for Azure DevOps. Please make sure you install it and apply it to the organization in which you're building this pipeline. The plugin can be found [HERE](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks)
 
 ### Variables
 
