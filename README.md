@@ -107,6 +107,9 @@ Connect it to your github repository, review the pipeline YAML and <b> save </b>
 
 This pipeline makes use of the Terraform plugin for Azure DevOps. Please make sure you install it and apply it to the organization in which you're building this pipeline. The plugin can be found [HERE](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks)
 
+### Service Connection
+In order to copy the VulnerableWebApp code, you must create a service connection to Github. Do this by selecting "Project Settings" and "Service Connection". Then modify the following lines 
+
 ### Variables
 
 We need to configure the variables in order for the pipeline to run. Once the setup is complete, select piplines > edit. This will allow you to review the YAML and configure the variables. Ensure you have the following variables. <br>
