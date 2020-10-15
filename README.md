@@ -21,11 +21,12 @@ This is the high level build pipeline workflow: <br>
     7. Installs Terraform & Runs Terraform init, plan.  <br>
     8. Builds VulnerableAzure.zip build artifact for deployment.  <br>
  <br>
- Due to there being security issues, this is why we see the Azure pipeline status as being partially sucessful. <br>
+ 
+ <b> NOTE: </b> Due to there being security issues, this is why we see the Azure pipeline status as being partially sucessful. Also, when you fork this repository, you will have to update the badge with your build. That process will be outlined later in this document <br>
  
 [![Build Status](https://dev.azure.com/mibraun/VulnerableAzure%20Deployment/_apis/build/status/metalstormbass.VulnerableAzure-AzurePipeline?repoName=metalstormbass%2FVulnerableAzure-AzurePipeline&branchName=master)](https://dev.azure.com/mibraun/VulnerableAzure%20Deployment/_build/latest?definitionId=1&repoName=metalstormbass%2FVulnerableAzure-AzurePipeline&branchName=master)  
-
 <br>
+
  This is the high level workflow of the Deploy to Azure release pipeline: <br>
 
     1. Automatically initiate pipeline when a new build artifact is created <br>
@@ -55,6 +56,8 @@ Fork the [VulnerableAzure-AzurePipeline](https://github.com/metalstormbass/Vulne
 
 Fork the [VulnerableWebApp](https://github.com/metalstormbass/VulnerableWebApp) repository.
 <br> 
+
+
 
 ### Microsoft Azure
  Create an App Registration in Azure. As this will be used multiple times, please note the following:
@@ -98,14 +101,37 @@ Connect it to your github repository, review the pipeline YAML and <b> save </b>
 
 ![](images/azdevops2.PNG) <br>
 
+### Plugins
+
+This pipeline makes use of the Terraform plugin for Azure DevOps. Please make sure you install it and apply it to the organization in which you're building this pipeline. The plugin can be found <b>[HERE](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks)
+
+### Variables
+
 We need to configure the variables in order for the pipeline to run. Once the setup is complete, select piplines > edit. This will allow you to review the YAML and configure the variables. Ensure you have the following variables. <br>
 
 ![](images/azdevops3.PNG) <br>
 
+``` bash
+
+CHKP_CLOUDGUARD_ID #CSPM API KEY
+CHKP_CLOUDGUARD_SECRET #CSPM API SECRET
+TERRAFORM_API_KEY #TERRAFORM API KEY
+TF_ORGANIZATION #TERRAFORM ORGANIZATION
+TF_WORKSPACE #TERRAFORM WORKSPACE
+
+```
 This will allow you to run the pipeline build. This is what a successful build looks like. Note that the error is due to the code failing the security checks from Cloudguard ShiftLeft. For demonstration purposes, I have set the pipeline to continue on error. <br>
 
-![](images/azdevops4.PNG) <br>
+![](images/azdevops4.PNG)
 
+
+### Badge
+
+Open up the pipeline and click on the three dots in the top left corner. Select "Badge" and then copy the sample markdown. Replace the markdown in the README with your badge.
+
+![](images/azdevops5.PNG)
+
+<br>
 Please review the [azure-pipelines.yml](azure-pipelines.yml) file to see the entire workflow.
 
 ## Azure Devops Build Pipeline Configuration

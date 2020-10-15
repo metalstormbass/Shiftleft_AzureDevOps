@@ -37,8 +37,7 @@ stages:
           env:
            CHKP_CLOUDGUARD_ID: $(CHKP_CLOUDGUARD_ID)
            CHKP_CLOUDGUARD_SECRET: $(CHKP_CLOUDGUARD_SECRET)
-           SG_CLIENT_ID: $(SG_CLIENT_ID)
-           SG_SECRET_KEY: $(SG_SECRET_KEY)
+
           continueOnError: True
         - task: ArchiveFiles@2
           inputs:
