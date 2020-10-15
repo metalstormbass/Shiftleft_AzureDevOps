@@ -132,6 +132,7 @@ Open up the pipeline and click on the three dots in the top left corner. Select 
 ![](images/azdevops5.PNG)
 
 <br>
+
 Please review the [azure-pipelines.yml](azure-pipelines.yml) file to see the entire workflow.
 
 ## Azure Devops Build Pipeline Configuration
