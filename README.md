@@ -121,8 +121,8 @@ We need to configure the variables in order for the pipeline to run. Once the se
 CHKP_CLOUDGUARD_ID #CSPM API KEY
 CHKP_CLOUDGUARD_SECRET #CSPM API SECRET
 TERRAFORM_API_KEY #TERRAFORM API KEY
-TF_ORGANIZATION #TERRAFORM ORGANIZATION
-TF_WORKSPACE #TERRAFORM WORKSPACE
+TF_ORGANIZATION #TERRAFORM ORGANIZATION AS DEFINED IN TERRAFORM.IO
+TF_WORKSPACE #TERRAFORM WORKSPACE AS DEFINED IN TERRAFORM.IO
 
 ```
 This will allow you to run the pipeline build. This is what a successful build looks like. Note that the error is due to the code failing the security checks from Cloudguard ShiftLeft. For demonstration purposes, I have set the pipeline to continue on error. <br>
@@ -144,9 +144,106 @@ When the pipeline completes, it will generate two artifacts: <br>
 <b>VulnerableAzure.zip</b> - This is the Terraform template that has been scanned and format checked. <br>
 <b>VulnerableWebApp.zip</b> - This is the code of the Vulnerable Web Application that has been scanned. <br>
 
-## Azure Devops Release Pipeline Configuration
+## Azure Devops Release Pipeline Configuration - Deployment
 
-Once the build pipeline is complete, you must then configure the release pipeline. This is done through the web interface and not with YAML.
+Once the build pipeline is complete, you must then configure the release pipeline. This is done through the web interface and not with YAML. Create a new pipeline and start by configuring the variables: <br>
+
+![](images/release4.PNG)
+
+### Artifact
+
+First, you must configure the release pipeline to accept the artifacts from the build pipeline:
+![](images/artifact.PNG)
+
+![](images/artifact1.PNG)
+
+### Deploy infrastructure with Terraform
+
+From there, I have configured a manual approval in the pre-deloyment conditions. This is so I can control when I deploy to Azure.
+
+![](images/release1.PNG)
+
+The first stage is deploying the infrastructure using Terraform. This job has two tasks, Install Terraform and then run Terraform Apply. First, lets examine the Terraform installer:
+
+![](images/release2.PNG)
+
+The next step is to actually deploy the artifact to Azure with Terraform:
+
+![](images/release3.PNG)
+
+Use this code:
+
+```
+unzip VulnerableAzure/VulnerableAzure.zip
+terraform init
+terraform plan
+terraform apply -auto-approve
+```
+
+<b>Note: You must configure the working directory for this to function correctly</b>
+
+### Deploy code to App Services
+
+The second stage also contains two tasks. The first task is to determine the name of the Azure AppService which was created by Terraform. This is done by making an API call to Terraform.io
+
+![](images/release5.PNG)
+
+Here is the code:
+
+```
+out=`curl --silent --header "Authorization: Bearer $TF_API_TOKEN" --header "Content-Type: application/vnd.api+json" https://app.terraform.io/api/v2/workspaces/$TF_WORKSPACE_ID/vars | jq -c --arg key "victim-company" '.data[].attributes | select 
+(.key=="victim_company") | .value' | tr -d \"`
+
+echo "##vso[task.setvariable variable=APP_NAME]${out}-app-service"
+echo "##vso[task.setvariable variable=RG]${out}-rg"
+```
+
+The final step is to use the AZ command line to deploy the artifact produced from the release pipeline:
+
+![](images/release6.PNG)
+
+<b>Note: You must configure the working directory for this to function correctly</b>
+
+Here is the code:
+
+```
+az webapp deployment source config-zip --name $APP_NAME --resource-group $RG --src VulnerableWebApp/VulnerableWebApp.zip 
+
+az webapp config set -g $RG -n $APP_NAME --startup-file /home/site/wwwroot/VulnerableWebApp/startup.sh
+```
+This completes the deployment configuration.
+
+## Azure Devops Release Pipeline Configuration - Destruction/Cleanup
+
+Configuring the destroy pipeline is very similar to the deploy pipeline.
+
+### Artifact
+
+First, you must configure the release pipeline to accept the artifacts from the build pipeline:
+![](images/artifact.PNG)
+
+![](images/artifact1.PNG)
+
+### Destroy
+
+In this case I have disabled the continuous deployment feature as I want to control when I destroy the environment. As a pre-deployment condition, I have configured it to be a manual only pipeline:
+
+
+![](images/release7.PNG)
+
+This pipeline has a single stage with two tasks. The first is again installing Terraform:
+
+![](images/release2.PNG)
+
+Finally, I am running Terraform destroy:
+
+![](images/release8.PNG)
+
+```
+unzip VulnerableAzure/VulnerableAzure.zip
+terraform init
+terraform destroy -auto-approve
+```
 
 
 
