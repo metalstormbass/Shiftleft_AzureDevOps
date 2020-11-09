@@ -22,18 +22,18 @@ stages:
         - bash: |
               ls VulnerableWebApp/
               #This makes the ShiftLeft Binary executable
-              chmod +x VulnerableAzure-AzurePipeline/shiftleft
+              chmod +x Shiftleft_AzureDevOps/shiftleft
 
               #Run ShiftLeft and Check the code against Rule 201981 (Which I defined in Cloudguard CSPM)
-              VulnerableAzure-AzurePipeline/shiftleft iac-assessment -r 201981 --path VulnerableAzure-AzurePipeline/
+              Shiftleft_AzureDevOps/shiftleft iac-assessment -r 201981 --path Shiftleft_AzureDevOps/
               
               #Run ShiftLeft against the VulnerableWebApp project
-              VulnerableAzure-AzurePipeline/shiftleft code-scan -s VulnerableWebApp/
+              Shiftleft_AzureDevOps/shiftleft code-scan -s VulnerableWebApp/
               
               #Download the docker image used in the project and scan with Shift Left
               docker pull bkimminich/juice-shop
               docker save bkimminich/juice-shop -o juice_shop.tar
-              VulnerableAzure-AzurePipeline/shiftleft image-scan --timeout 1800 --image ./juice_shop.tar
+              Shiftleft_AzureDevOps/shiftleft image-scan --timeout 1800 --image ./juice_shop.tar
           env:
            CHKP_CLOUDGUARD_ID: $(CHKP_CLOUDGUARD_ID)
            CHKP_CLOUDGUARD_SECRET: $(CHKP_CLOUDGUARD_SECRET)

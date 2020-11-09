@@ -140,9 +140,13 @@ Open up the pipeline and click on the three dots in the top left corner. Select 
 
 Please review the [azure-pipelines.yml](azure-pipelines.yml) file to see the entire workflow.
 
-## Azure Devops Build Pipeline Configuration
+When the pipeline completes, it will generate two artifacts: <br>
+<b>VulnerableAzure.zip</b> - This is the Terraform template that has been scanned and format checked. <br>
+<b>VulnerableWebApp.zip</b> - This is the code of the Vulnerable Web Application that has been scanned. <br>
 
+## Azure Devops Release Pipeline Configuration
 
+Once the build pipeline is complete, you must then configure the release pipeline. This is done through the web interface and not with YAML.
 
 
 
