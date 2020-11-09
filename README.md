@@ -144,6 +144,30 @@ When the pipeline completes, it will generate two artifacts: <br>
 <b>VulnerableAzure.zip</b> - This is the Terraform template that has been scanned and format checked. <br>
 <b>VulnerableWebApp.zip</b> - This is the code of the Vulnerable Web Application that has been scanned. <br>
 
+## Shift Left - DevSecOps
+
+There are three components to the ShiftLeft<br><br>
+
+The first is the infrastructure as code scan. This will scan the Terraform code and compare it againts a rule that has been defined in Check Point CPSM. 
+
+```
+Shiftleft_AzureDevOps/shiftleft iac-assessment -r 201981 --path Shiftleft_AzureDevOps/
+```
+
+Note: <b>In this case, the rule number 201981 is specific to my tenant. You will need to change this for your pipeline. </b>
+
+The second component is scanning the source code of the web application. This looks for vulnerabilities in the code as well as hard coded secrets, etc.
+
+```
+Shiftleft_AzureDevOps/shiftleft code-scan -s VulnerableWebApp/
+```
+
+The final component is the container scan. This checks the security of the container image prior to it being deployed.
+
+```
+Shiftleft_AzureDevOps/shiftleft image-scan --timeout 1800 --image ./juice_shop.tar
+```
+
 ## Azure Devops Release Pipeline Configuration - Deployment
 
 Once the build pipeline is complete, you must then configure the release pipeline. This is done through the web interface and not with YAML. Create a new pipeline and start by configuring the variables: <br>
