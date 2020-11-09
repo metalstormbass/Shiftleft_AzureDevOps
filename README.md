@@ -263,6 +263,8 @@ Finally, I am running Terraform destroy:
 
 ![](images/release8.PNG)
 
+Here is the code:
+
 ```
 unzip VulnerableAzure/VulnerableAzure.zip
 terraform init
