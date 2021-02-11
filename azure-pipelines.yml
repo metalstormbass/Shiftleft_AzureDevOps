@@ -15,7 +15,7 @@ stages:
   - stage: 
     jobs:
     
-    - job: Terraform_Security_Scan  
+    - job: Security_Scans  
       steps:
         - checkout: VulnerableWebApp
         - checkout: self
