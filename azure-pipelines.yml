@@ -54,7 +54,7 @@ stages:
             publishLocation: 'pipeline'
 
     - job:  Terraform_Plan    
-      dependsOn: Terraform_Security_Scan
+      dependsOn: Security_Scans
       steps:
       
        - task: TerraformInstaller@0
